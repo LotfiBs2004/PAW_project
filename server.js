@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+require('dotenv').config(); // Import the dotenv module
+
 const db = require('./routers/connectDb'); // Import the database connection
 
 app.use(cors());
@@ -13,8 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
  
 
 app.get("/" , function(req, res){ 
-    res.send("Hello World"); 
+    res.json({message: "Hello World!" , status: 200}); 
 })
+
 
 
 let port = 3000;
