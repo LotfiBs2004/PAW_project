@@ -9,7 +9,7 @@ const db = mysql2.createConnection({
     user: 'root' ,
     password: process.env.DB_PASSWORD,
     database: 'paw'  , 
-    port: 3500 , 
+    port: 3306 , 
 
 }); 
 
