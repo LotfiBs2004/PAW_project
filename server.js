@@ -19,6 +19,13 @@ app.get("/" , function(req, res){
 })
 
 
+const signUpRouter = require('./routers/signUp'); 
+const loginRouter = require('./routers/login'); 
+
+app.use('/', signUpRouter);
+
+app.use('/', loginRouter);
+
 
 let port = 3000;
 app.listen(port, () => { 

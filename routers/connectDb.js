@@ -5,11 +5,11 @@ const mysql2 = require('mysql2');
 require('dotenv').config(); // Import the dotenv module
 
 const db = mysql2.createConnection({
-    host: 'localhost',
-    user: 'root' ,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER, 
     password: process.env.DB_PASSWORD,
-    database: 'paw'  , 
-    port: 3500 , 
+    database: process.env.DB_NAME, 
+    port: process.env.DB_PORT , 
 
 }); 
 
