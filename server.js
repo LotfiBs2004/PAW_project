@@ -1,33 +1,36 @@
-
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();  // Import dotenv for environment variables
 
-require('dotenv').config(); // Import the dotenv module
-
+// Database connection
 const db = require('./routers/connectDb'); // Import the database connection
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
- 
+// Middleware setup
+app.use(cors());  // Allow cross-origin requests
+app.use(bodyParser.json());  // Parse JSON request bodies
+app.use(bodyParser.urlencoded({ extended: true }));  // Parse URL-encoded bodies
 
-app.get("/" , function(req, res){ 
-    res.json({message: "Hello World!" , status: 200}); 
-})
+// Basic route for testing
+app.get("/", (req, res) => { 
+    res.json({ message: "Hello World!", status: 200 }); 
+});
 
-
+// Import routers
 const signUpRouter = require('./routers/signUp'); 
 const loginRouter = require('./routers/login'); 
+const categoryRouter = require('./routers/category');  // Import the category route
 
-app.use('/', signUpRouter);
+// Use the routers
+app.use('/', signUpRouter);   // Signup routes
+app.use('/', loginRouter);    // Login routes
+app.use('/', categoryRouter); // Category creation route
 
-app.use('/', loginRouter);
+// Set up the server port using environment variable or default to 3000
+const port = process.env.PORT || 3000;  // Use PORT from .env or default to 3000
 
-
-let port = 3000;
+// Start the server
 app.listen(port, () => { 
-    console.log(`Server is running on port localhost://${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
